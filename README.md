@@ -72,4 +72,4 @@ python app.py
 
 ## 许可证
 
-本项目使用MIT许可证 - 查看[LICENSE](LICENSE)文件了解详情。
+本项目使用GPL许可证 - 查看[LICENSE](LICENSE)文件了解详情。
