@@ -1,0 +1,164 @@
+@import './variables.scss';
+
+// 清除浮动
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// 文字溢出处理（单行）
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 文字溢出处理（多行）
+@mixin text-ellipsis-multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 使用flex居中
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 使用flex垂直居中
+@mixin flex-center-vertical {
+  display: flex;
+  align-items: center;
+}
+
+// 使用flex水平居中
+@mixin flex-center-horizontal {
+  display: flex;
+  justify-content: center;
+}
+
+// 使用绝对定位居中
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 使用绝对定位垂直居中
+@mixin absolute-center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 使用绝对定位水平居中
+@mixin absolute-center-horizontal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 设置边框
+@mixin border($width: 1px, $style: solid, $color: $border-base) {
+  border: $width $style $color;
+}
+
+// 设置四个方向的边框
+@mixin border-direction($direction, $width: 1px, $style: solid, $color: $border-base) {
+  border-#{$direction}: $width $style $color;
+}
+
+// 设置圆角
+@mixin border-radius($radius: $border-radius-base) {
+  border-radius: $radius;
+}
+
+// 设置盒子阴影
+@mixin box-shadow($shadow: $box-shadow-base) {
+  box-shadow: $shadow;
+}
+
+// 设置过渡效果
+@mixin transition($property: all, $duration: $transition-duration, $timing-function: $transition-timing-function) {
+  transition: $property $duration $timing-function;
+}
+
+// 设置定位
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  @if $top != null { top: $top; }
+  @if $right != null { right: $right; }
+  @if $bottom != null { bottom: $bottom; }
+  @if $left != null { left: $left; }
+}
+
+// 响应式断点
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// 禁止用户选择
+@mixin user-select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// 隐藏滚动条但允许滚动
+@mixin scrollbar-hidden {
+  -ms-overflow-style: none;  // IE and Edge
+  scrollbar-width: none;     // Firefox
+  &::-webkit-scrollbar {     // Chrome, Safari and Opera
+    display: none;
+  }
+}
+
+// 自定义滚动条样式
+@mixin custom-scrollbar($width: 6px, $track-color: #f1f1f1, $thumb-color: #888) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($thumb-color, 10%);
+  }
+}
+
+// 设置字体大小和行高
+@mixin font-size($size, $line-height: 1.5) {
+  font-size: $size;
+  line-height: $line-height;
+}
+
+// 设置背景图片
+@mixin background-image($url, $size: cover, $position: center, $repeat: no-repeat) {
+  background-image: url($url);
+  background-size: $size;
+  background-position: $position;
+  background-repeat: $repeat;
+} 
